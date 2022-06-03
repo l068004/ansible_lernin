@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repository index
+    apt:
+      update_cache: yes
+
+  - name: install something
+    apt:
+      name: some_package
+      state: latest
+
+  - name: remove something else
+    apt:
+      name: something else
+      state: absent
