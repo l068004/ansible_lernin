@@ -7,13 +7,16 @@
   - name: update repository index
     apt:
       update_cache: yes
+    when: ansible_distribution == "Ubuntu"
 
-  - name: install something
+  - name: install neofetch
     apt:
-      name: some_package
+      name: neofetch
       state: latest
+    when: ansible_distribution == "Ubuntu"
 
   - name: remove something else
     apt:
       name: something else
       state: absent
+    when: ansible_distribution == "Ubuntu"

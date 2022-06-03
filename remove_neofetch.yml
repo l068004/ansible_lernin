@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: remove neofetch
+    apt:
+      name: neofetch
+      state: absent
+    when: ansible_distribution == "Ubuntu"
