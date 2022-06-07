@@ -1,0 +1,33 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: ubuntu_servers
+  become: true
+  tasks:
+
+  - name: Install cmatrix
+    tags: cmatrix,ubuntu
+    apt:
+      name:
+        - cmatrix
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Copy Files
+    tags: poop,files,ubuntu
+    copy:
+      src: poop.txt
+      dest: /home/damon/Desktop/poop.txt
+      owner: damon
+      group: damon
+      mode: 0644
