@@ -31,3 +31,30 @@
       owner: damon
       group: damon
       mode: 0644
+
+- hosts: workstations
+  become: true
+  tasks:
+
+  - name: install unzip
+    package:
+      name: unzip
+
+  - name: Install Terraform
+    tags: terraform
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/1.2.2/terraform_1.2.2_linux_amd64.zip
+      dest: /home/damon/Desktop/terraform
+      remote_src: yes
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Copy Files
+    tags: poop,files,ubuntu
+    copy:
+      src: poop.txt
+      dest: /home/damon/Desktop/poop.txt
+      owner: damon
+      group: damon
+      mode: 0644
