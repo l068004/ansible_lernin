@@ -1,0 +1,25 @@
+---
+
+ - hosts: all
+   become: true
+   tasks:
+
+   - name: create mcpoopy user
+     user:
+       name: mcpoopy
+       groups: root
+
+   - name: add ssh key for mcpoopy
+     tags: always
+     authorized_key:
+       user: mcpoopy
+       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2y00K/i5NXPivk62bM/Y4FpRtEVWEzEH2A/V5+TDD5 Ansible"
+
+   - name: add sudoers file for mcpoopy
+     tags: always
+     copy:
+       src: sudoer_mcpoopy
+       dest: /etc/sudoers.d/mcpoopy
+       owner: root
+       group: root
+       mode: 0440

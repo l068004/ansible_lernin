@@ -58,3 +58,15 @@
       owner: damon
       group: damon
       mode: 0644
+
+- hosts: ubuntu_servers
+  become: true
+  tasks:
+
+  - name: Modifying foods.conf file
+    tags: files
+    lineinfile:
+      path: /home/damon/Desktop/terraform/foods.conf
+      regexp: '^a ='
+      line: a = anchovies
+    when: ansible_distribution == "Ubuntu"

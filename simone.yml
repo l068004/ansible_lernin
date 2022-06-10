@@ -1,0 +1,10 @@
+---
+
+ - hosts: all
+   become: true
+   tasks:
+
+   - name: create mcpoopy user
+     user:
+       name: simone
+       groups: root

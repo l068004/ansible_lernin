@@ -1,0 +1,17 @@
+---
+
+ - hosts: all
+   become: true
+   tasks:
+
+   - name: add ssh key for mcpoopy
+     tags: always
+     authorized_key:
+       user: simone
+       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2y00K/i5NXPivk62bM/Y4FpRtEVWEzEH2A/V5+TDD5 Ansible"
+       state: absent
+
+   - name: create mcpoopy user
+     user:
+       name: simone
+       state: absent
